@@ -18,19 +18,19 @@ def prime_number(input_num):
 
 def is_divisible_5(input_num):
     # A filter to prevent unnecesary computation.
-    # checks if the last digit of the input_num is 5 to 
+    # Returns True if the last digit of the input_num is 5 or 0 to 
     # determine if it's divisible by 5, excluding 5 itself.
     if input_num == 5:
         return False
     input_string = str(input_num)
-    if input_string[len(input_string) - 1] == '5':
+    if input_string[len(input_string) - 1] == '5' or input_string[len(input_string) - 1] == '0':
         return True
     return False
 
 def is_divisible_3(input_num):
-    # A simple filter to prevent unnecesary computation.
-    # checks if the last digit of the input_num is 3 to 
-    # determine if it's divisible by 3, excluding 3 itself.
+    # A filter to prevent unnecesary computation.
+    # Returns True if the sum of the digits of the input_num is
+    # divisible by 3, exluding 3 itself.
     if input_num == 3:
         return False
     input_string = str(input_num)
@@ -45,7 +45,7 @@ def check_if_prime(input_num):
     # After a series of quick tests eliminate multiples of
     # 2, 3, and 5, a loop from 7 to sqrt(input_num) counting by odds
     # tries to divide the input_num by the counter (poss_factors) 
-    # to see if it has any factors.
+    # to see if it has any factors. If it has no factors, it returns True.
     
     if is_divisible_3(input_num):
         return False
