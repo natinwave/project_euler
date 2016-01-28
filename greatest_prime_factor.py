@@ -14,6 +14,12 @@ def biggest_prime_factor(input_num):
         # checks if the count divides evenly into the input_num.
         if input_num % count == 0:
             
+            # possible_prime is the dividend that needs to be checked 
+            # to see if it's prime. If it is prime, it's returned.
+            possible_prime = input_num / count
+            if check_if_prime(possible_prime):
+                return possible_prime
+            
             # count_prime keeps a record of the greatest prime counter;
             # e.g., for input = 50, the loop will count from 2 to 7.
             # It'll get to 7 and stop, not finding any prime dividends. However, 
@@ -21,12 +27,6 @@ def biggest_prime_factor(input_num):
             # 5 is then returned as the greatest prime factor at the end.
             if check_if_prime(count):
                 count_prime = count
-                
-            # possible_prime is the dividend that needs to be checked 
-            # to see if it's prime. If it is prime, it's returned.
-            possible_prime = input_num / count
-            if check_if_prime(possible_prime):
-                return possible_prime
                 
     # If it reaches the end of the loop and count_prime was never set,
     # the input_num must be prime and is itself returned.
