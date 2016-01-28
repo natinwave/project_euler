@@ -9,6 +9,9 @@ def biggest_prime_factor(input_num):
     # and then checks if that dividend is a prime number. 
     # The first prime dividend it finds will be the greatest prime factor.
     count_prime = 0
+    
+    dividend_generator = (input_num / count for count in range(2, int(math.sqrt(input_num))))
+    
     for count in range(2, int(math.sqrt(input_num))):
         
         # checks if the count divides evenly into the input_num.
