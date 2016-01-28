@@ -5,21 +5,21 @@ import math
 def biggest_prime_factor(input_num):
     
     # This loop starts from 2 and counts to the sqrt(input_num),
-    # checks if the input_num is divisible by the count,
+    # checks if the input_num is divisible by the divisor,
     # and then checks if that dividend is a prime number. 
     # The first prime dividend it finds will be the greatest prime factor.
     count_prime = 0
     
-    dividend_generator = (input_num / count for count in range(2, int(math.sqrt(input_num))))
+    #dividend_generator = (input_num / count for count in range(2, int(math.sqrt(input_num))))
     
-    for count in range(2, int(math.sqrt(input_num))):
+    for divisor in range(2, int(math.sqrt(input_num))):
         
-        # checks if the count divides evenly into the input_num.
-        if input_num % count == 0:
+        # checks if the divisor divides evenly into the input_num.
+        if input_num % divisor == 0:
             
             # possible_prime is the dividend that needs to be checked 
             # to see if it's prime. If it is prime, it's returned.
-            possible_prime = input_num / count
+            possible_prime = input_num / divisor
             if check_if_prime(possible_prime):
                 return possible_prime
             
@@ -28,8 +28,8 @@ def biggest_prime_factor(input_num):
             # It'll get to 7 and stop, not finding any prime dividends. However, 
             # count_prime will know that it counted past 5, which is a prime number.
             # 5 is then returned as the greatest prime factor at the end.
-            if check_if_prime(count):
-                count_prime = count
+            if check_if_prime(divisor):
+                count_prime = divisor
                 
     # If it reaches the end of the loop and count_prime was never set,
     # the input_num must be prime and is itself returned.
