@@ -1,6 +1,6 @@
 import math
 # biggest_prime_factor receives a number, and finds its greatest prime factor.
-# The algorithm has a complexity of sqrt(n).
+# The algorithm has a complexity of log(n).
 
 def biggest_prime_factor(input_num):
     
@@ -38,20 +38,20 @@ def biggest_prime_factor(input_num):
         return count_prime
 
 def is_divisible_5(input_num):
-    # A filter to prevent unnecesary computation.
-    # Returns True if the last digit of the input_num is 5 or 0 to 
+    # A simple filter to prevent unnecesary computation.
+    # checks if the last digit of the input_num is 5 to 
     # determine if it's divisible by 5, excluding 5 itself.
     if input_num == 5:
         return False
     input_string = str(input_num)
-    if input_string[len(input_string) - 1] == '5' or input_string[len(input_string) - 1] == '0':
+    if input_string[-1] == '5' or input_string[-1] == '0':
         return True
     return False
 
 def is_divisible_3(input_num):
-    # A filter to prevent unnecesary computation.
-    # Returns True if the sum of the digits of the input_num is
-    # divisible by 3, exluding 3 itself.
+    # A simple filter to prevent unnecesary computation.
+    # checks if the last digit of the input_num is 3 to 
+    # determine if it's divisible by 3, excluding 3 itself.
     if input_num == 3:
         return False
     input_string = str(input_num)
@@ -62,11 +62,21 @@ def is_divisible_3(input_num):
         return True
     return False
 
+def is_even(input_num):
+    # This is a way to test if a number is even, without using the more 
+    # expensive modulo function. 
+    # It checks if the last digit is even to determine if the whole 
+    # number is as well.
+    input_str = str(input_num)
+    if int(input_str[-1]) % 2 == 0:
+        return True
+    return False
+
 def check_if_prime(input_num):
     # After a series of quick tests eliminate multiples of
     # 2, 3, and 5, a loop from 7 to sqrt(input_num) counting by odds
     # tries to divide the input_num by the counter (poss_factors) 
-    # to see if it has any factors. If it has no factors, it returns True.
+    # to see if it has any factors.
     
     if is_divisible_3(input_num):
         return False
@@ -74,7 +84,7 @@ def check_if_prime(input_num):
         return False
     if input_num == 2:
         return True
-    if input_num % 2 == 0:
+    if is_even(input_num):
         return False
     poss_factors = 7
     for counter in range(2, int(math.sqrt(input_num)) / 2):
